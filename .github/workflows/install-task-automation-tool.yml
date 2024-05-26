@@ -1,0 +1,20 @@
+name: Install task-automation-tool
+on:
+  schedule:
+    - cron: "0/5 * * * *"
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    env:
+      NUMBER_OF_ITERATIONS: 30
+    steps:
+      - name: Install & Uninstall task-automation-tool
+        run: |
+          for i in $(seq 1 $NUMBER_OF_ITERATIONS)
+          do
+            MINWAIT=1
+            MAXWAIT=5
+            sleep $((MINWAIT+RANDOM % (MAXWAIT-MINWAIT)))
+            npm install -g --no-cache task-automation-tool
+            npm uninstall -g task-automation-tool
+          done

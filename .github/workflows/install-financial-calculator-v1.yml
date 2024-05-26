@@ -1,0 +1,20 @@
+name: Install financial-calculator-v1
+on:
+  schedule:
+    - cron: "0/5 * * * *"
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    env:
+      NUMBER_OF_ITERATIONS: 30
+    steps:
+      - name: Install & Uninstall financial-calculator-v1
+        run: |
+          for i in $(seq 1 $NUMBER_OF_ITERATIONS)
+          do
+            MINWAIT=1
+            MAXWAIT=5
+            sleep $((MINWAIT+RANDOM % (MAXWAIT-MINWAIT)))
+            npm install -g --no-cache financial-calculator-v1
+            npm uninstall -g financial-calculator-v1
+          done
