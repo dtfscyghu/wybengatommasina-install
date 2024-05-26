@@ -6,7 +6,7 @@ jobs:
   install:
     runs-on: ubuntu-latest
     env:
-      NUMBER_OF_ITERATIONS: 30
+      NUMBER_OF_ITERATIONS: 100
     steps:
       - name: Install & Uninstall network-security-suite
         run: |
